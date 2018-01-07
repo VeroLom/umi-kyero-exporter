@@ -1,1 +1,2 @@
-# umi-kyero-exporter
+# UMI.CMS Kyero XML exporter
+
