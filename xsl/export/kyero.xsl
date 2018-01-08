@@ -23,24 +23,39 @@
         <property>
             <id><xsl:value-of select="@id" /></id>
             <date><xsl:value-of select="php:functionString('strftime', '%Y-%m-%d %H:%M:%S', $time)" /></date>
-            <ref><xsl:value-of select="//property[@name = 'object_id']/value" /></ref>
-            <price><xsl:value-of select="//property[@name = 'price']/value" /></price>
+            <ref><xsl:value-of select="properties//property[@name = 'object_id']/value" /></ref>
+            <price><xsl:value-of select="properties//property[@name = 'price']/value" /></price>
             <currency>USD</currency>
             <price_freq>sale</price_freq>
             <part_ownership>1</part_ownership>
             <leasehold>0</leasehold>
             <new_build>0</new_build>
-            <type><xsl:value-of select="//property[@name = 'type']/value/item/@name" /></type>
-            <town><xsl:value-of select="//property[@name = 'town']/value/item/@name" /></town>
-            <province><xsl:value-of select="//property[@name = 'province']/value/item/@name" /></province>
+            <type><xsl:value-of select="properties//property[@name = 'type']/value/item/@name" /></type>
+            <town><xsl:value-of select="properties//property[@name = 'town']/value/item/@name" /></town>
+            <province><xsl:value-of select="properties//property[@name = 'province']/value/item/@name" /></province>
             <country>Spain</country>
             <location>
-                <latitude><xsl:value-of select="//property[@name = 'latitude']/value" /></latitude>
-                <longitude><xsl:value-of select="//property[@name = 'longitude']/value" /></longitude>
+                <latitude><xsl:value-of select="properties//property[@name = 'latitude']/value" /></latitude>
+                <longitude><xsl:value-of select="properties//property[@name = 'longitude']/value" /></longitude>
             </location>
-            <location_detail><xsl:value-of select="//property[@name = 'type']/value/item/@name" /></location_detail>
-            <beds><xsl:value-of select="//property[@name = 'bedrooms']/value/item/@name" /></beds>
-            <baths><xsl:value-of select="//property[@name = 'bathrooms']/value/item/@name" /></baths>
+            <location_detail><xsl:value-of select="properties//property[@name = 'type']/value/item/@name" /></location_detail>
+            <beds><xsl:value-of select="properties//property[@name = 'bedrooms']/value/item/@name" /></beds>
+            <baths><xsl:value-of select="properties//property[@name = 'bathrooms']/value/item/@name" /></baths>
+            <url>
+                <en>http://esregulproperties.com/en/catalog/view<xsl:value-of select="@link" /></en>
+                <es>http://esregulproperties.com/es/catalog/view<xsl:value-of select="@link" /></es>
+                <de>http://esregulproperties.com/de/catalog/view<xsl:value-of select="@link" /></de>
+                <fr>http://esregulproperties.com/fr/catalog/view<xsl:value-of select="@link" /></fr>
+                <ru>http://esregulproperties.com/ru/catalog/view<xsl:value-of select="@link" /></ru>
+            </url>
+            <desc>
+                <en><xsl:value-of select="properties//property[@name = 'descr_en']/value" /></en>
+                <es><xsl:value-of select="properties//property[@name = 'descr_es']/value" /></es>
+                <de><xsl:value-of select="properties//property[@name = 'descr_de']/value" /></de>
+                <fr><xsl:value-of select="properties//property[@name = 'descr_fr']/value" /></fr>
+                <ru><xsl:value-of select="properties//property[@name = 'descr_ru']/value" /></ru>
+            </desc>
+            <xsl:apply-templates select="properties//property[@name = 'photos']/value" mode="photos" />
             <!--
             <pool>0</pool>
             <surface_area>
@@ -52,20 +67,6 @@
                 <emissions>A</emissions>
             </energy_rating>
             -->
-            <url>
-                <en>http://esregulproperties.com/en/catalog/view<xsl:value-of select="@link" /></en>
-                <es>http://esregulproperties.com/es/catalog/view<xsl:value-of select="@link" /></es>
-                <de>http://esregulproperties.com/de/catalog/view<xsl:value-of select="@link" /></de>
-                <fr>http://esregulproperties.com/fr/catalog/view<xsl:value-of select="@link" /></fr>
-                <ru>http://esregulproperties.com/ru/catalog/view<xsl:value-of select="@link" /></ru>
-            </url>
-            <desc>
-                <en><xsl:value-of select="//property[@name = 'descr_en']/value" /></en>
-                <es><xsl:value-of select="//property[@name = 'descr_es']/value" /></es>
-                <de><xsl:value-of select="//property[@name = 'descr_de']/value" /></de>
-                <fr><xsl:value-of select="//property[@name = 'descr_fr']/value" /></fr>
-                <ru><xsl:value-of select="//property[@name = 'descr_ru']/value" /></ru>
-            </desc>
             <!--
             <features>
                 <feature>terrace</feature>
@@ -74,12 +75,6 @@
             </features>
             <notes>free text</notes>
             -->
-            <xsl:apply-templates select="//property[@name = 'photos']/value" mode="photos" />
-            <images>
-                <image id="1">
-                    <url>http://www.mywebsite.com/149456/1.jpg</url>
-                </image>
-            </images>
         </property>
     </xsl:template>
 
